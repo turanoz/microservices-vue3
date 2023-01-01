@@ -13,8 +13,8 @@
                       <i class="flaticon-shipped"></i>
                     </div>
                     <div class="icon_box_content">
-                      <h5>Free Delivery</h5>
-                      <p>Phasellus blandit massa enim elit of passage varius nunc.</p>
+                      <h5>Ücretsiz Kargo</h5>
+                      <p>Fiyat alt sınırı olmadan tüm ürünlerimizde ücertsiz kargo fırsatı</p>
                     </div>
                   </div>
                 </div>
@@ -24,8 +24,8 @@
                       <i class="flaticon-money-back"></i>
                     </div>
                     <div class="icon_box_content">
-                      <h5>30 Day Returns Guarantee</h5>
-                      <p>Phasellus blandit massa enim elit of passage varius nunc.</p>
+                      <h5>30 Gün İade Garantisi</h5>
+                      <p>Tüm ürünlerimizde koşulsuz iade garantisi.</p>
                     </div>
                   </div>
                 </div>
@@ -36,7 +36,7 @@
                     </div>
                     <div class="icon_box_content">
                       <h5>7/24 Online Support</h5>
-                      <p>Phasellus blandit massa enim elit of passage varius nunc.</p>
+                      <p>İhtiyacınız olan her anınızda yanınızdayız.</p>
                     </div>
                   </div>
                 </div>
@@ -50,7 +50,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-6">
-            <p class="text-center text-md-start mb-md-0">© 2022 All Rights Reserved by Bestwebcreator</p>
+            <p class="text-center text-md-start mb-md-0">© 2022 All Rights Reserved by Turan Öz</p>
           </div>
           <div class="col-lg-6">
             <ul class="footer_payment text-center text-md-end">

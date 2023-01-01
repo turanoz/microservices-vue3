@@ -9,6 +9,7 @@ import Login from "@/pages/customer/Login.vue";
 import Register from "@/pages/customer/Register.vue";
 import auth from "@/middlewares/auth";
 import token from "@/middlewares/token";
+import basket from "@/middlewares/basket";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -33,7 +34,7 @@ const router = createRouter({
             path: '/checkout',
             name: 'checkout',
             component: Checkout,
-            beforeEnter: [token, auth]
+            beforeEnter: [token, auth, basket]
         },
         {
             path: '/order',

@@ -39,25 +39,16 @@
                         <tr>
                           <th>Sipariş</th>
                           <th>Tarih</th>
-                          <th>Durum</th>
                           <th>Tutar</th>
                           <th>Görüntüle</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                          <td>#1234</td>
-                          <td>March 15, 2020</td>
-                          <td>Processing</td>
-                          <td>$78.00 for 1 item</td>
-                          <td><a href="#" class="btn btn-fill-out btn-sm">View</a></td>
-                        </tr>
-                        <tr>
-                          <td>#2366</td>
-                          <td>June 20, 2020</td>
-                          <td>Completed</td>
-                          <td>$81.00 for 1 item</td>
-                          <td><a href="#" class="btn btn-fill-out btn-sm">View</a></td>
+                        <tr v-for="order in orderStore.getSummaryOrders">
+                          <td>{{ order.id }}</td>
+                          <td>{{ new Date(order.date).toLocaleDateString() }}</td>
+                          <td>{{ order.itemQuantity + " kalem ürün " + order.itemAmount + "₺" }}</td>
+                          <td><a @click="getDetailClick(order.id)" class="btn btn-fill-out btn-sm">Detay</a></td>
                         </tr>
                         </tbody>
                       </table>
@@ -75,15 +66,18 @@
                       <div class="row">
                         <div class="form-group col-md-6 mb-3">
                           <label>Ad<span class="required">*</span></label>
-                          <input disabled v-model="store.getUserInfo.name" required="" class="form-control" name="name" type="text">
+                          <input disabled v-model="store.getUserInfo.name" required="" class="form-control" name="name"
+                                 type="text">
                         </div>
                         <div class="form-group col-md-6 mb-3">
                           <label>Soyad<span class="required">*</span></label>
-                          <input disabled v-model="store.getUserInfo.surname" required="" class="form-control" name="text">
+                          <input disabled v-model="store.getUserInfo.surname" required="" class="form-control"
+                                 name="text">
                         </div>
                         <div class="form-group col-md-12 mb-3">
                           <label>E-posta Adresi <span class="required">*</span></label>
-                          <input v-model="store.getUserInfo.email" required="" class="form-control" name="email" type="email" disabled>
+                          <input v-model="store.getUserInfo.email" required="" class="form-control" name="email"
+                                 type="email" disabled>
                         </div>
                       </div>
                     </div>
@@ -96,10 +90,57 @@
       </div>
     </div>
     <!-- END SECTION SHOP -->
-
-
   </div>
   <!-- END MAIN CONTENT -->
+
+  <!-- Modal -->
+  <div class="modal fade" v-if="orderStore.anySelected" id="orderDetailModal" tabindex="-1"
+       aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body ">
+          <div class="text-right"><i class="fa fa-close close" data-dismiss="modal"></i></div>
+
+          <div class="px-4 py-5">
+
+            <h5 class="text-uppercase">{{ store.getUserInfo.name + " " + store.getUserInfo.surname }}</h5>
+
+            <p>
+              {{
+                orderStore.getOrderById[0].address.street + " " + orderStore.getOrderById[0].address.line + " " + orderStore.getOrderById[0].address.zipCode + " " + orderStore.getOrderById[0].address.district + "/" + orderStore.getOrderById[0].address.province
+              }}
+            </p>
+
+
+            <div class="theme-color text-end">
+              {{ new Date(orderStore.getOrderById[0].createdDate).toLocaleDateString() }}
+            </div>
+            <h5 class="theme-color">Sipariş Özeti</h5>
+
+            <div class="mb-3">
+              <hr class="new1">
+            </div>
+
+            <div class="d-flex justify-content-between" v-for="order in orderStore.getOrderById[0].orderItems">
+              <router-link :to="{name:'product',params:{id:order.productId}}" target="_blank"><span
+                  class="font-weight-bold">{{ order.productName.substring(0,20) }}</span></router-link>
+              <span class="font-weight-bold">{{ order.quantity }} adet</span>
+              <span class="font-weight-bold">{{ order.price }}₺</span>
+              <span class="text-muted">{{ order.price * order.quantity }}₺</span>
+            </div>
+
+            <div class="d-flex justify-content-between mt-3">
+              <span class="font-weight-bold">Toplam</span>
+              <span class="font-weight-bold theme-color">{{orderStore.getOrderById[0].totalPrice}}₺</span>
+            </div>
+
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script setup>
@@ -107,10 +148,28 @@ import TokenExtension from "@/extensions/TokenExtension";
 import {onMounted} from "vue";
 import identityEndpoints from "@/services/identityEndpoints";
 import {useAuthStore} from "@/stores/useAuthStore";
+import orderEndpoints from "@/services/orderEndpoints";
+import {useOrderStore} from "@/stores/useOrderStore";
 
-const store=useAuthStore();
+const store = useAuthStore();
+const orderStore = useOrderStore();
+
+const getDetailClick = (id) => {
+  orderStore.initSelected(id)
+
+  setTimeout(() => {
+    const ss = new bootstrap.Modal(document.getElementById('orderDetailModal'), {})
+
+    ss.show();
+  }, 500)
+
+
+}
 
 onMounted(async () => {
   await identityEndpoints().getUser()
+  await orderEndpoints().getOrders();
+
+  postscribe("#scripts")
 })
 </script>

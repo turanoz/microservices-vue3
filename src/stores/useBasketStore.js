@@ -61,6 +61,6 @@ export const useBasketStore = defineStore('basket', () => {
 
 
     return {
-        getBasket, getLength, getTotalPrice, initBasket, initBaskets, deleteBasket
+        basket,getBasket, getLength, getTotalPrice, initBasket, initBaskets, deleteBasket
     }
 })

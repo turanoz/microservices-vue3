@@ -3,6 +3,7 @@ import {defineStore} from 'pinia'
 
 export const useCatalogStore = defineStore('catalog', () => {
     const categories = ref([]);
+    const categoryName = ref("");
     const products = ref([]);
     const product = ref({});
     const getCategories = computed(() => categories.value);
@@ -13,6 +14,17 @@ export const useCatalogStore = defineStore('catalog', () => {
         categories.value = data;
     };
 
+    const getCategoryNameById = (id) => {
+
+        categories.value.forEach((item) => {
+            if (item.id) {
+                categoryName.value= item.name;
+            }
+        })
+
+        return null;
+    }
+
     const initProducts = (data) => {
         products.value = data;
     };
@@ -22,6 +34,8 @@ export const useCatalogStore = defineStore('catalog', () => {
     };
 
     return {
+        getCategoryNameById,
+        categoryName,
         getCategories,
         getProducts,
         getProduct,
