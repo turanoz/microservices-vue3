@@ -1,0 +1,10 @@
+version: "3.8"
+services:
+  microservice_ui:
+    container_name: microservice_ui
+    image: microservice_ui_image
+    build: .
+    restart: on-failure
+    ports:
+      - "80:80"
+      - "443:443"
