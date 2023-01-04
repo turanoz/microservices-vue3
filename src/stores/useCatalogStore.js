@@ -17,7 +17,7 @@ export const useCatalogStore = defineStore('catalog', () => {
     const getCategoryNameById = (id) => {
 
         categories.value.forEach((item) => {
-            if (item.id) {
+            if (item.id===id) {
                 categoryName.value= item.name;
             }
         })

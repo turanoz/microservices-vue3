@@ -5,14 +5,9 @@ import router from "@/router";
 
 export const identity = (config) => {
     const identityApi = axios.create();
-    identityApi.defaults.baseURL = "http://localhost:5001";
+    identityApi.defaults.baseURL = "http://34.88.156.91:5001";
 
-    identityApi.interceptors.request.use((cnf) => {
-
-        cnf.headers["Authorization"] = TokenExtension().getUserToken();
-
-        return cnf;
-    }, (error) => Promise.reject(error))
+    identityApi.interceptors.request.use(cnf => cnf, (error) => Promise.reject(error))
 
     identityApi.interceptors.response.use(res => res, async (err) => {
 
@@ -41,7 +36,7 @@ export const identity = (config) => {
 }
 export const catalog = (config) => {
     const catalogApi = axios.create();
-    catalogApi.defaults.baseURL = "http://localhost:5000/services/catalog";
+    catalogApi.defaults.baseURL = "http://34.88.156.91:5000/services/catalog";
 
     catalogApi.interceptors.request.use((cnf) => {
 
@@ -79,7 +74,7 @@ export const catalog = (config) => {
 export const gateway = (config) => {
     const gatewayApi = axios.create();
 
-    gatewayApi.defaults.baseURL = "http://localhost:5000/services/";
+    gatewayApi.defaults.baseURL = "http://34.88.156.91:5000/services/";
 
     gatewayApi.interceptors.request.use((cnf) => {
 

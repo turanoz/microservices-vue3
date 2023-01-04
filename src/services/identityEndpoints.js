@@ -2,6 +2,7 @@ import qs from "qs";
 import TokenExtension from "@/extensions/TokenExtension";
 import {identity} from "@/services/_api";
 import {useAuthStore} from "@/stores/useAuthStore";
+import router from "@/router";
 
 export default function () {
     const clientCredentialLogin = async () => {
@@ -11,7 +12,8 @@ export default function () {
         });
         const config = {
             method: 'post', url: 'connect/token', headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Authorization': TokenExtension().getClientToken()
             }, data: data
         };
 
@@ -30,7 +32,8 @@ export default function () {
         });
         const config = {
             method: 'post', url: 'connect/token', headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Authorization': TokenExtension().getClientToken()
             }, data: data
         };
 
@@ -56,7 +59,8 @@ export default function () {
         });
         const config = {
             method: 'post', url: 'connect/token', headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Authorization': TokenExtension().getClientToken()
             }, data: data
         };
 
@@ -77,7 +81,8 @@ export default function () {
         }
         const config = {
             method: 'post', url: 'api/user/signup', headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': TokenExtension().getClientToken()
             }, data: data
         };
 
@@ -85,6 +90,7 @@ export default function () {
 
         if (res.status === 204) {
             await userLogin(data.email, data.password);
+            await router.push({name: 'shop'})
         }
 
     }
@@ -93,7 +99,8 @@ export default function () {
 
         const config = {
             method: 'get', url: 'api/user/getUser', headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': TokenExtension().getUserToken()
             }
         };
 

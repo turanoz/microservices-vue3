@@ -30,7 +30,7 @@
                     <div class="product_action_box">
                       <ul class="list_none pr_action_btn">
                         <li class="add-to-cart">
-                          <a href="#"><i class="icon-basket-loaded"></i> Sepete Ekle</a>
+                          <a @click="basketStore.initBasket(product,1)" href="#"><i class="icon-basket-loaded"></i> Sepete Ekle</a>
                         </li>
                       </ul>
                     </div>
@@ -92,7 +92,8 @@ const basketStore = useBasketStore();
 
 const route = useRoute();
 onMounted(async () => {
-  if (route.params.id === null || route.params.id === undefined) {
+  if (route.params.id === null || route.params.id === undefined || route.params.id === "") {
+    store.categoryName="Tüm Ürünler"
     await catalogEndpoints().getProducts();
 
   } else {
@@ -102,16 +103,22 @@ onMounted(async () => {
 })
 
 onBeforeRouteUpdate(async (to, from) => {
-  if (to.params.id !== from.params.id) {
-    await catalogEndpoints().getProductsByCategoryId(to.params.id)
-    store.getCategoryNameById(to.params.id)
+  if (to.params.id === "") {
+    store.categoryName="Tüm Ürünler"
+    await catalogEndpoints().getProducts();
+  } else {
+
+    if (to.params.id !== from.params.id) {
+      await catalogEndpoints().getProductsByCategoryId(to.params.id)
+      store.getCategoryNameById(to.params.id)
+    }
   }
 })
 </script>
 <style>
 
 .sdsd {
-  color: #FF324D;
+  color: #09a350;
 }
 
 </style>
