@@ -54,11 +54,11 @@
           </div>
           <div class="col-lg-6">
             <ul class="footer_payment text-center text-md-end">
-              <li><a href="#"><img src="/src/assets/images/visa.png" alt="visa"></a></li>
-              <li><a href="#"><img src="/src/assets/images/discover.png" alt="discover"></a></li>
-              <li><a href="#"><img src="/src/assets/images/master_card.png" alt="master_card"></a></li>
-              <li><a href="#"><img src="/src/assets/images/paypal.png" alt="paypal"></a></li>
-              <li><a href="#"><img src="/src/assets/images/amarican_express.png" alt="amarican_express"></a></li>
+              <li><a href="#"><img src="/public/assets/images/visa.png" alt="visa"></a></li>
+              <li><a href="#"><img src="/public/assets/images/discover.png" alt="discover"></a></li>
+              <li><a href="#"><img src="/public/assets/images/master_card.png" alt="master_card"></a></li>
+              <li><a href="#"><img src="/public/assets/images/paypal.png" alt="paypal"></a></li>
+              <li><a href="#"><img src="/public/assets/images/amarican_express.png" alt="amarican_express"></a></li>
             </ul>
           </div>
         </div>

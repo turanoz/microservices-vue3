@@ -15,7 +15,7 @@
       <div class="container">
         <div class="nav_block">
           <router-link replace to="/" class="navbar-brand">
-            <img class="logo_dark" src="/src/assets/images/logorgb.png" height="100" alt="logo">
+            <img class="logo_dark" src="/public/assets/images/logorgb.png" height="100" alt="logo">
           </router-link>
           <div class="product_search_form radius_input search_form_btn">
             <form>
