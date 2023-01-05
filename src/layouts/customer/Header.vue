@@ -22,12 +22,12 @@
               <router-link :to="{name:'account'}" class="nav-link"><i class="linearicons-user"></i></router-link>
             </li>
             <li class="dropdown cart_dropdown" v-if="basketStore.getLength>0">
-              <a class="nav-link cart_trigger" href="javascript:void(0)">
+              <router-link class="nav-link cart_trigger" to="/cart" >
                 <i class="linearicons-bag2"></i>
                 <span class="cart_count">{{ basketStore.getLength }}</span>
                 <span class="amount">
                   <span class="currency_symbol">{{ basketStore.getTotalPrice }}</span>₺</span>
-              </a>
+              </router-link>
               <div class="cart_box cart_right dropdown-menu dropdown-menu-right">
                 <ul class="cart_list">
                   <li v-for="basket in basketStore.getBasket" :key="basket.id">
