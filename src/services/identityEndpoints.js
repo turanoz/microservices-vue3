@@ -10,13 +10,12 @@ export default function () {
         const data = qs.stringify({
             'client_id': 'VueSpa', 'client_secret': 'secret', 'grant_type': 'client_credentials'
         });
-        const config = {
+
+        return identity({
             method: 'post', url: 'connect/token', headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             }, data: data
-        };
-
-        return identity(config);
+        });
 
     }
 
@@ -29,14 +28,13 @@ export default function () {
             'grant_type': 'refresh_token',
             'refresh_token': TokenExtension().getUserRefreshToken()
         });
-        const config = {
+
+        const res = await identity({
             method: 'post', url: 'connect/token', headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
                 'Authorization': TokenExtension().getClientToken()
             }, data: data
-        };
-
-        const res = await identity(config);
+        });
 
         if (res.status === 200) {
             TokenExtension().setUserToken(res.data.access_token)
@@ -59,14 +57,13 @@ export default function () {
             'username': username,
             'password': password,
         });
-        const config = {
+
+        const res = await identity({
             method: 'post', url: 'connect/token', headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
                 'Authorization': TokenExtension().getClientToken()
             }, data: data
-        };
-
-        const res = await identity(config).then(res => res.data);
+        }).then(res => res.data);
 
         TokenExtension().setUserToken(res.access_token)
         TokenExtension().setUserRefreshToken(res.refresh_token)
@@ -81,14 +78,13 @@ export default function () {
         if (data.password !== data.passwordAgain) {
             return false;
         }
-        const config = {
+
+        const res = await identity( {
             method: 'post', url: 'api/user/signup', headers: {
                 'Content-Type': 'application/json',
                 'Authorization': TokenExtension().getClientToken()
             }, data: data
-        };
-
-        const res = await identity(config);
+        });
 
         if (res.status === 204) {
             await userLogin(data.email, data.password);
@@ -99,14 +95,13 @@ export default function () {
 
     const getUser = async () => {
 
-        const config = {
+
+        const res = await identity({
             method: 'get', url: 'api/user/getUser', headers: {
                 'Content-Type': 'application/json',
                 'Authorization': TokenExtension().getUserToken()
             }
-        };
-
-        const res = await identity(config).then(res => res.data);
+        }).then(res => res.data);
 
         const store = useAuthStore();
 

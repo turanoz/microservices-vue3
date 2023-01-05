@@ -5,12 +5,11 @@ export default function () {
 
     const getOrders = async () => {
 
-        const config = {
+        const rs = await gateway({
             method: 'get', url: 'order/Orders', headers: {
                 'Content-Type': 'application/json'
             },
-        };
-        const rs = await gateway(config).then(res => res.data.data);
+        }).then(res => res.data.data);
 
 
         const store = useOrderStore();

@@ -4,14 +4,12 @@ export default function () {
 
     const fakePayment = (data) => {
 
-        const config = {
+        return gateway({
             method: 'post', url: 'fakepayment/FakePayments', headers: {
                 'Content-Type': 'application/json'
             },
             data: data
-        };
-
-        return gateway(config);
+        });
 
 
     }
