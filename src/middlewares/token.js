@@ -8,7 +8,7 @@ export default (to, from, next) => {
         store.initLoginInfo(true);
         next();
     } else {
-        next({name: 'login'});
+        next({name: 'login',query:{dist:to.fullPath}});
     }
 
 }

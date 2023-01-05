@@ -126,10 +126,11 @@ import router from "@/router";
 const {details} = useCheckout();
 
 const userStore = useAuthStore()
-details.order.buyerId = userStore.getUserInfo.id;
+
 const store = useBasketStore();
 
 const payment = async () => {
+  details.order.buyerId = userStore.getUserInfo.id;
   store.getBasket.forEach((x) => {
 
     details.order.orderItems.push({
@@ -144,7 +145,6 @@ const payment = async () => {
 
   details.totalPrice = store.getTotalPrice
 
-  console.log(details.totalPrice)
   const rs = await paymentEndpoints().fakePayment(details);
   if (rs.status === 200) {
     await basketEndpoints().deleteBasket();

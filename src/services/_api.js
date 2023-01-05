@@ -19,6 +19,7 @@ export const identity = (config) => {
                 try {
                     const rs = await identityEndpoints().silentLogin();
                     if (rs.status !== 200) {
+                        TokenExtension().deleteToken();
                         await router.push({name: 'login'})
                         return false;
                     }
@@ -92,6 +93,7 @@ export const gateway = (config) => {
                 try {
                     const rs = await identityEndpoints().silentLogin();
                     if (rs.status !== 200) {
+                        TokenExtension().deleteToken();
                         await router.push({name: 'login'})
                         return false;
                     }

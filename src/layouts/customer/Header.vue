@@ -15,26 +15,8 @@
       <div class="container">
         <div class="nav_block">
           <router-link replace to="/" class="navbar-brand">
-            <img class="logo_dark" src="/public/assets/images/logorgb.png" height="100" alt="logo">
+            <img class="logo_dark" src="/assets/images/logorgb.png" height="100" alt="logo">
           </router-link>
-          <div class="product_search_form radius_input search_form_btn">
-            <form>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <div class="custom_select">
-                    <select class="first_null not_chosen">
-                      <option value="">Tüm Kategoriler</option>
-                      <option :value="category.id" v-for="category in catalogStore.getCategories" :key="category.id">
-                        {{ category.name }}
-                      </option>
-                    </select>
-                  </div>
-                </div>
-                <input class="form-control" placeholder="Ürün Ara..." required="" type="text">
-                <button type="submit" class="search_btn3">Bul</button>
-              </div>
-            </form>
-          </div>
           <ul class="navbar-nav attr-nav align-items-center">
             <li>
               <router-link :to="{name:'account'}" class="nav-link"><i class="linearicons-user"></i></router-link>
@@ -53,7 +35,7 @@
                       <i class="ion-close"></i>
                     </a>
                     <a href="#">
-                      <img :src="basket.picture" alt="cart_thumb1">{{ basket.name }}</a>
+                      <img :src="getPhoto(basket.picture)" alt="cart_thumb1">{{ basket.name }}</a>
                     <span class="cart_quantity"> {{ basket.quantity }} x
                       <span class="cart_amount">{{ basket.price }}
                         <span class="price_symbole">₺</span>
@@ -110,7 +92,7 @@
               <div class="collapse navbar-collapse mobile_side_menu" id="navbarSidetoggle">
                 <ul class="navbar-nav">
                   <li>
-                    <router-link :to="{name:'shop'}" class="nav-link nav_item">Mağaza</router-link>
+                    <router-link to="/" class="nav-link nav_item">Mağaza</router-link>
                   </li>
                 </ul>
               </div>
@@ -130,25 +112,9 @@
 
 import {useCatalogStore} from "@/stores/useCatalogStore";
 import {useBasketStore} from "@/stores/useBasketStore";
-
+import photoEndpoints from "@/services/photoEndpoints";
+const {getPhoto}=photoEndpoints();
 const catalogStore = useCatalogStore();
 const basketStore = useBasketStore();
-
-
-import {onMounted} from "vue";
-import catalogEndpoints from "@/services/catalogEndpoints";
-import basketEndpoints from "@/services/basketEndpoints";
-
-onMounted(async () => {
-
-  await catalogEndpoints().getCategories();
-
-  const basket = await basketEndpoints().getBasket();
-
-  if (basket.status === 200) {
-    basketStore.initBaskets(basket.data.data.basketItems);
-  }
-
-})
 
 </script>

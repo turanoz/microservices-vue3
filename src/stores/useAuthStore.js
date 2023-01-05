@@ -6,6 +6,7 @@ export const useAuthStore = defineStore('auth', () => {
     const userInfo = ref({});
     const getLoginInfo = computed(() => loginInfo.value);
     const getUserInfo = computed(() => userInfo.value);
+    const isAdmin = computed(() => userInfo.value.roles?.some(x => x === "Admin") ?? false);
 
     const initLoginInfo = (data) => {
         loginInfo.value = data;
@@ -17,9 +18,6 @@ export const useAuthStore = defineStore('auth', () => {
 
 
     return {
-        getUserInfo,
-        getLoginInfo,
-        initLoginInfo,
-        initUserInfo
+        getUserInfo, getLoginInfo, initLoginInfo, initUserInfo, isAdmin
     }
 })

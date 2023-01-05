@@ -8,7 +8,7 @@ export default async (to, from, next) => {
         await identityEndpoints().getUser()
         next();
     } else {
-        next({name: 'login'});
+        next({name: 'login',query:{dist:to.fullPath}});
     }
 
 }

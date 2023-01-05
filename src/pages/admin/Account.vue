@@ -11,11 +11,11 @@
               <ul class="nav nav-tabs flex-column" role="tablist">
                 <li class="nav-item">
                   <a class="nav-link active" id="orders-tab" data-bs-toggle="tab" href="#orders" role="tab"
-                     aria-controls="orders" aria-selected="false"><i class="ti-shopping-cart-full"></i>Siparişlerim</a>
+                     aria-controls="orders" aria-selected="false"><i class="ti-shopping-cart-full"></i>Siparişler</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" id="account-detail-tab" data-bs-toggle="tab" href="#account-detail" role="tab"
-                     aria-controls="account-detail" aria-selected="true"><i class="ti-id-badge"></i>Hesap Detayları</a>
+                  <a class="nav-link" id="products-tab" data-bs-toggle="tab" href="#products" role="tab"
+                     aria-controls="account-detail" aria-selected="true"><i class="ti-id-badge"></i>Ürünler</a>
                 </li>
                 <li class="nav-item">
                   <router-link @click="logoutClick" class="nav-link" to="login"><i
@@ -56,10 +56,10 @@
                   </div>
                 </div>
               </div>
-              <div class="tab-pane fade" id="account-detail" role="tabpanel" aria-labelledby="account-detail-tab">
+              <div class="tab-pane fade" id="products" role="tabpanel" aria-labelledby="account-detail-tab">
                 <div class="card">
                   <div class="card-header">
-                    <h3>Hesap Detayları</h3>
+                    <h3>Ürün Ekle</h3>
                   </div>
                   <div class="card-body">
                     <div>
@@ -150,7 +150,8 @@ import identityEndpoints from "@/services/identityEndpoints";
 import {useAuthStore} from "@/stores/useAuthStore";
 import orderEndpoints from "@/services/orderEndpoints";
 import {useOrderStore} from "@/stores/useOrderStore";
-
+import {useBasketStore} from "@/stores/useBasketStore";
+import basketEndpoints from "@/services/basketEndpoints";
 
 const store = useAuthStore();
 const orderStore = useOrderStore();
@@ -168,12 +169,11 @@ const getDetailClick = (id) => {
 }
 const logoutClick=()=>{
   TokenExtension().deleteToken();
+  const basket=useBasketStore();
+  basket.$reset();
 }
 onMounted(async () => {
-  if (!store.getLoginInfo){
-    await identityEndpoints().getUser()
-  }
-
+  await identityEndpoints().getUser()
   await orderEndpoints().getOrders();
 })
 </script>

@@ -51,15 +51,22 @@ import {ref} from "vue";
 import identityEndpoints from "@/services/identityEndpoints";
 import {useAuthStore} from "@/stores/useAuthStore";
 import router from "@/router";
+import {useRoute} from "vue-router";
 
 const email = ref();
 const pass = ref();
 
 const store = useAuthStore();
+const route = useRoute()
 const login = async () => {
   await identityEndpoints().userLogin(email.value, pass.value);
   if (store.getLoginInfo) {
-    await router.push({name: "account"})
+    if (route.query.dist !== "" && route.query.dist !== undefined) {
+      await router.push(route.query.dist)
+    } else {
+      console.log("121")
+      await router.push({name: "account"})
+    }
   }
 }
 </script>

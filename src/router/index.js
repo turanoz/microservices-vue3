@@ -1,4 +1,6 @@
 import {createRouter, createWebHistory} from 'vue-router'
+import Header from "@/layouts/customer/Header.vue";
+import Footer from "@/layouts/customer/Footer.vue";
 import Shop from "@/pages/customer/Shop.vue";
 import Product from "@/pages/customer/Product.vue";
 import Cart from "@/pages/customer/Cart.vue";
@@ -17,48 +19,80 @@ const router = createRouter({
         {
             path: '/:id?',
             name: 'shop',
-            component: Shop
+            components: {
+                default: Shop,
+                header: Header,
+                footer: Footer,
+            }
         },
         {
             path: '/product/:id?',
             name: 'product',
-            component: Product
+            components: {
+                default: Product,
+                header: Header,
+                footer: Footer,
+            }
         },
         {
             path: '/cart',
             name: 'cart',
-            component: Cart,
-            beforeEnter: [token, auth]
+            components: {
+                default: Cart,
+                header: Header,
+                footer: Footer,
+            },
+            beforeEnter: [token, auth, basket]
         },
         {
             path: '/checkout',
             name: 'checkout',
-            component: Checkout,
+            components: {
+                default: Checkout,
+                header: Header,
+                footer: Footer,
+            },
             beforeEnter: [token, auth, basket]
         },
         {
             path: '/order',
             name: 'order',
-            component: Order,
+            components: {
+                default: Order,
+                header: Header,
+                footer: Footer,
+            },
             beforeEnter: [token, auth]
 
         },
         {
             path: '/account',
             name: 'account',
-            component: Account,
+            components: {
+                default: Account,
+                header: Header,
+                footer: Footer,
+            },
             beforeEnter: [token, auth]
 
         },
         {
             path: '/login',
             name: 'login',
-            component: Login
+            components: {
+                default: Login,
+                header: Header,
+                footer: Footer,
+            },
         },
         {
             path: '/register',
             name: 'register',
-            component: Register
+            components: {
+                default: Register,
+                header: Header,
+                footer: Footer,
+            }
         },
     ]
 })

@@ -12,8 +12,7 @@ export default function () {
         });
         const config = {
             method: 'post', url: 'connect/token', headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'Authorization': TokenExtension().getClientToken()
+                'Content-Type': 'application/x-www-form-urlencoded'
             }, data: data
         };
 
@@ -39,8 +38,11 @@ export default function () {
 
         const res = await identity(config);
 
-        TokenExtension().setUserToken(res.data.access_token)
-        TokenExtension().setUserRefreshToken(res.data.refresh_token)
+        if (res.status === 200) {
+            TokenExtension().setUserToken(res.data.access_token)
+            TokenExtension().setUserRefreshToken(res.data.refresh_token)
+        }
+
 
         return res;
 

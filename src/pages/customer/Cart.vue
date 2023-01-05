@@ -23,7 +23,7 @@
                 <tr v-for="basket in store.getBasket" :key="basket.id">
                   <td class="product-thumbnail">
                     <a href="#">
-                      <img :src="basket.picture" :alt="basket.name"></a>
+                      <img :src="getPhoto(basket.picture)" :alt="basket.name"></a>
                   </td>
                   <td class="product-name" data-title="Product"><a href="#">{{ basket.name }}</a></td>
                   <td class="product-price" data-title="Price">{{ basket.price }}₺</td>
@@ -88,6 +88,9 @@
 <script setup>
 import {useBasketStore} from "@/stores/useBasketStore";
 import basketEndpoints from "@/services/basketEndpoints";
+import photoEndpoints from "@/services/photoEndpoints";
+
+const {getPhoto}=photoEndpoints();
 
 const store = useBasketStore();
 
