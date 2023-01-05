@@ -1,6 +1,5 @@
 import {ref, computed} from 'vue'
 import {defineStore} from 'pinia'
-
 export const useOrderStore = defineStore('order', () => {
     const orders = ref([]);
     const getOrders = computed(() => orders.value);
@@ -26,15 +25,12 @@ export const useOrderStore = defineStore('order', () => {
     const getOrderById = computed(() => {
         return orders.value.filter(x => x.id === selected.value);
     });
-
     const initOrders = (data) => {
         orders.value = data;
     };
     const initSelected = (id) => {
         selected.value = id;
     }
-
-
     return {
         getOrders, getOrderById, getSummaryOrders, initOrders, initSelected, anySelected
     }

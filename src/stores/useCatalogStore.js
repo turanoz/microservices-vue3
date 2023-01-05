@@ -9,11 +9,9 @@ export const useCatalogStore = defineStore('catalog', () => {
     const getCategories = computed(() => categories.value);
     const getProducts = computed(() => products.value);
     const getProduct = computed(() => product.value);
-
     const initCategories = (data) => {
         categories.value = data;
     };
-
     const getCategoryNameById = (id) => {
 
         categories.value.forEach((item) => {
@@ -24,15 +22,12 @@ export const useCatalogStore = defineStore('catalog', () => {
 
         return null;
     }
-
     const initProducts = (data) => {
         products.value = data;
     };
-
     const initProduct = (data) => {
         product.value = data;
     };
-
     return {
         getCategoryNameById,
         categoryName,

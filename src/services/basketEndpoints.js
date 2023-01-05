@@ -1,21 +1,13 @@
 import {gateway} from "@/services/_api";
-
 export default function () {
-
     const getBasket = () => {
-
         return gateway({
             method: 'get', url: 'basket/baskets', headers: {
                 'Content-Type': 'application/json'
             }
         });
-
-
     }
-
     const createBasket = (products) => {
-
-
         return gateway( {
             method: 'post', url: 'basket/baskets', headers: {
                 'Content-Type': 'application/json'
@@ -23,7 +15,6 @@ export default function () {
                 basketItems: products
             }
         });
-
     }
     const deleteBasket = async () => {
         return gateway({
@@ -31,10 +22,6 @@ export default function () {
                 'Content-Type': 'application/json'
             }
         });
-
     }
-
     return {getBasket, createBasket, deleteBasket}
-
-
 }

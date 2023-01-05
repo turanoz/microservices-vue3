@@ -14,7 +14,6 @@ export const useBasketStore = defineStore('basket', () => {
         })
         return totalPrice.value;
     });
-
     const initBaskets = (data) => {
         basket.value = data;
     }
@@ -58,7 +57,6 @@ export const useBasketStore = defineStore('basket', () => {
         localStorage.setItem("basket", JSON.stringify(basket.value));
 
     };
-
 
     return {
         basket,getBasket, getLength, getTotalPrice, initBasket, initBaskets, deleteBasket

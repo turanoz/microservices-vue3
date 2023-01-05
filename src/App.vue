@@ -1,6 +1,6 @@
 <template>
-  <CustomerLayout/>
+  <Layout/>
 </template>
 <script setup>
-import CustomerLayout from "@/layouts/customer/CustomerLayout.vue";
+import Layout from "@/layouts/customer/Layout.vue";
 </script>
