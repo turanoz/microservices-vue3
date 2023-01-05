@@ -1,5 +1,5 @@
 <template>
-  <!--   LOADER
+
     <div class="preloader">
       <div class="lds-ellipsis">
         <span></span>
@@ -7,7 +7,7 @@
         <span></span>
       </div>
     </div>
-     END LOADER-->
+
 
   <!-- START HEADER -->
   <header class="header_wrap">

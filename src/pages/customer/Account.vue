@@ -44,7 +44,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="order in orderStore.getSummaryOrders">
+                        <tr v-for="order in orderStore.getSummaryOrders" :key="order.id">
                           <td>{{ order.id }}</td>
                           <td>{{ new Date(order.date).toLocaleDateString() }}</td>
                           <td>{{ order.itemQuantity + " kalem ürün " + order.itemAmount + "₺" }}</td>
@@ -121,7 +121,7 @@
               <hr class="new1">
             </div>
 
-            <div class="d-flex justify-content-between" v-for="order in orderStore.getOrderById[0].orderItems">
+            <div class="d-flex justify-content-between" v-for="order in orderStore.getOrderById[0].orderItems" :key="order.productId">
               <router-link :to="{name:'product',params:{id:order.productId}}" target="_blank"><span
                   class="font-weight-bold">{{ order.productName.substring(0,20) }}</span></router-link>
               <span class="font-weight-bold">{{ order.quantity }} adet</span>

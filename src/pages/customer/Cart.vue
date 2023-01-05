@@ -93,7 +93,6 @@ import photoEndpoints from "@/services/photoEndpoints";
 const {getPhoto}=photoEndpoints();
 
 const store = useBasketStore();
-
 const saveBasket=async () => {
   await basketEndpoints().createBasket(store.getBasket)
 }

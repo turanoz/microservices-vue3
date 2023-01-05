@@ -143,7 +143,7 @@
             <div class="mb-3">
               <label for="cid" class="form-label">Kategori</label>
               <select class="form-select" id="cid" v-model="newProduct.categoryId">
-                <option v-for="category in store.getCategories" :value="category.id">{{ category.name }}</option>
+                <option v-for="category in store.getCategories" :value="category.id" :key="category.id">{{ category.name }}</option>
 
               </select>
             </div>
