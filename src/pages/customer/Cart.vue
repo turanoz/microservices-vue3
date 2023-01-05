@@ -25,17 +25,17 @@
                     <a href="#">
                       <img :src="getPhoto(basket.picture)" :alt="basket.name"></a>
                   </td>
-                  <td class="product-name" data-title="Product"><a href="#">{{ basket.name }}</a></td>
-                  <td class="product-price" data-title="Price">{{ basket.price }}₺</td>
-                  <td class="product-quantity" data-title="Quantity">
+                  <td class="product-name" data-title="Ürün Adı"><a href="#">{{ basket.name }}</a></td>
+                  <td class="product-price" data-title="Fiyatı">{{ basket.price }}₺</td>
+                  <td class="product-quantity" data-title="Adet">
                     <div class="quantity">
                       <input type="button" value="-" class="minus">
                       <input type="text" name="quantity" :value="basket.quantity" title="Qty" class="qty" size="4">
                       <input type="button" value="+" class="plus">
                     </div>
                   </td>
-                  <td class="product-subtotal" data-title="Total">{{ basket.amount }}₺</td>
-                  <td class="product-remove" data-title="Remove"><a @click="store.deleteBasket(basket.id)" href="#"><i
+                  <td class="product-subtotal" data-title="Tutar">{{ basket.amount }}₺</td>
+                  <td class="product-remove" data-title="Sil"><a @click="store.deleteBasket(basket.id)" href="#"><i
                       class="ti-close"></i></a></td>
                 </tr>
                 </tbody>
