@@ -3,12 +3,12 @@ import TokenExtension from "@/extensions/TokenExtension";
 
 export default (to, from, next) => {
     const store = useAuthStore();
-
-    if (TokenExtension().getUserToken() && TokenExtension().getUserRefreshToken()) {
+    const tokenExtension = TokenExtension();
+    if (tokenExtension.getUserToken && tokenExtension.getUserRefreshToken) {
         store.initLoginInfo(true);
         next();
     } else {
-        next({name: 'login',query:{dist:to.fullPath}});
+        next({name: 'login', query: {dist: to.fullPath}});
     }
 
 }

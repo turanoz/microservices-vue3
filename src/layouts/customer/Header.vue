@@ -22,7 +22,7 @@
               <router-link :to="{name:'account'}" class="nav-link"><i class="linearicons-user"></i></router-link>
             </li>
             <li class="dropdown cart_dropdown" v-if="basketStore.getLength>0">
-              <a class="nav-link cart_trigger" href="#">
+              <a class="nav-link cart_trigger" href="javascript:void(0)">
                 <i class="linearicons-bag2"></i>
                 <span class="cart_count">{{ basketStore.getLength }}</span>
                 <span class="amount">
@@ -112,9 +112,18 @@
 
 import {useCatalogStore} from "@/stores/useCatalogStore";
 import {useBasketStore} from "@/stores/useBasketStore";
+import {onMounted} from "vue";
+import catalogEndpoints from "@/services/catalogEndpoints";
+import identityEndpoints from "@/services/identityEndpoints";
 import photoEndpoints from "@/services/photoEndpoints";
+
 const {getPhoto}=photoEndpoints();
 const catalogStore = useCatalogStore();
 const basketStore = useBasketStore();
+
+onMounted(async () => {
+  await catalogEndpoints().getCategories();
+  await identityEndpoints().getUser()
+})
 
 </script>

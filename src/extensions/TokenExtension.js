@@ -1,14 +1,10 @@
 export default function () {
 
-    const getClientToken = () => {
-        return "Bearer " + localStorage.getItem('clientToken')
-    }
-    const getUserToken = () => {
-        return "Bearer " + localStorage.getItem('userToken')
-    }
-    const getUserRefreshToken = () => {
-        return localStorage.getItem('userRefreshToken')
-    }
+    const getClientToken = "Bearer " + localStorage.getItem('clientToken')
+
+    const getUserToken = "Bearer " + localStorage.getItem('userToken')
+
+    const getUserRefreshToken = localStorage.getItem('userRefreshToken')
 
     const setClientToken = (token) => {
         return localStorage.setItem('clientToken', token)

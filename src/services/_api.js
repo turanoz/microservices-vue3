@@ -41,8 +41,7 @@ export const catalog = (config) => {
 
     catalogApi.interceptors.request.use((cnf) => {
 
-        cnf.headers["Authorization"] = TokenExtension().getClientToken();
-
+        cnf.headers["Authorization"] = TokenExtension().getClientToken;
         return cnf;
     }, (error) => Promise.reject(error))
 
@@ -78,8 +77,9 @@ export const gateway = (config) => {
     gatewayApi.defaults.baseURL = "http://34.88.156.91:5000/services/";
 
     gatewayApi.interceptors.request.use((cnf) => {
+        cnf.headers["Authorization"] = TokenExtension().getUserToken;
 
-        cnf.headers["Authorization"] = TokenExtension().getUserToken();
+
         return cnf;
     }, (error) => Promise.reject(error))
 

@@ -20,12 +20,12 @@ export default function () {
             'client_id': 'VueSpaForUser',
             'client_secret': 'secret',
             'grant_type': 'refresh_token',
-            'refresh_token': TokenExtension().getUserRefreshToken()
+            'refresh_token': TokenExtension().getUserRefreshToken
         });
         const res = await identity({
             method: 'post', url: 'connect/token', headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
-                'Authorization': TokenExtension().getClientToken()
+                'Authorization': TokenExtension().getClientToken
             }, data: data
         });
 
@@ -47,7 +47,7 @@ export default function () {
         const res = await identity({
             method: 'post', url: 'connect/token', headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
-                'Authorization': TokenExtension().getClientToken()
+                'Authorization': TokenExtension().getClientToken
             }, data: data
         }).then(res => res.data);
         TokenExtension().setUserToken(res.access_token)
@@ -61,7 +61,7 @@ export default function () {
         const res = await identity( {
             method: 'post', url: 'api/user/signup', headers: {
                 'Content-Type': 'application/json',
-                'Authorization': TokenExtension().getClientToken()
+                'Authorization': TokenExtension().getClientToken
             }, data: data
         });
         if (res.status === 204) {
@@ -73,7 +73,7 @@ export default function () {
         const res = await identity({
             method: 'get', url: 'api/user/getUser', headers: {
                 'Content-Type': 'application/json',
-                'Authorization': TokenExtension().getUserToken()
+                'Authorization': TokenExtension().getUserToken
             }
         }).then(res => res.data);
         const store = useAuthStore();

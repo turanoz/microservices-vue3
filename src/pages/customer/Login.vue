@@ -64,7 +64,6 @@ const login = async () => {
     if (route.query.dist !== "" && route.query.dist !== undefined) {
       await router.push(route.query.dist)
     } else {
-      console.log("121")
       await router.push({name: "account"})
     }
   }

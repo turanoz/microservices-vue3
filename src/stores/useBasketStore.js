@@ -3,7 +3,7 @@ import {defineStore} from 'pinia'
 import basketEndpoints from "@/services/basketEndpoints";
 
 export const useBasketStore = defineStore('basket', () => {
-    const basket = ref([]);
+    const basket = ref(JSON.parse(localStorage.getItem("basket")) ?? []);
     const totalPrice = ref(0);
     const getBasket = computed(() => basket.value);
     const getLength = computed(() => basket.value.length);
@@ -43,22 +43,17 @@ export const useBasketStore = defineStore('basket', () => {
     };
     const deleteBasket = async (id) => {
         basket.value.forEach((item, index) => {
-
             if (item.id === id) {
                 basket.value.splice(index, 1)
             }
-
         })
-
         if (basket.value.length === 0) {
             await basketEndpoints().deleteBasket();
         }
-
         localStorage.setItem("basket", JSON.stringify(basket.value));
-
     };
 
     return {
-        basket,getBasket, getLength, getTotalPrice, initBasket, initBaskets, deleteBasket
+        basket, getBasket, getLength, getTotalPrice, initBasket, initBaskets, deleteBasket
     }
 })
