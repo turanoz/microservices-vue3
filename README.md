@@ -1,29 +1,34 @@
-# microservice-front
 
-This template should help get you started developing with Vue 3 in Vite.
 
-## Recommended IDE Setup
+# microservices-vue3
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+This project is the frontend implementation of a backend service developed with microservices architecture, using Vue 3 and modern state management library, Pinia. It also utilizes a ready-made dashboard structure.
 
-## Customize configuration
+## Requirements
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+- Node.js (v14.16.0 or later)
+- Npm (v6.14.0 or later)
 
-## Project Setup
+## Installation
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+## Usage
+
+### Running in Development Mode
 
 ```sh
 npm run dev
 ```
 
-### Compile and Minify for Production
+This command runs the project in development mode and applies any changes made to the source code instantly.
+
+### Building for Production
 
 ```sh
 npm run build
 ```
+
+This command prepares the project for production mode.
